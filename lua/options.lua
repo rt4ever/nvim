@@ -40,11 +40,10 @@ opt.updatetime = 250
 
 -- Completion
 opt.completeopt = {
-    "menu",
-    "menuone",
-    "noselect",
+	"menu",
+	"menuone",
+	"noselect",
 }
 
 -- Persistent undo
 opt.undofile = true
-

@@ -1,5 +1,5 @@
 local map = vim.keymap.set
- 
+
 -- Better escape
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
@@ -45,81 +45,84 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 -- Terminal-friendly paste
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-
 -- Telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {
-    desc = "Find files",
+	desc = "Find files",
 })
 
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", {
-    desc = "Search text",
+	desc = "Search text",
 })
 
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", {
-    desc = "Find buffers",
+	desc = "Find buffers",
 })
 
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", {
-    desc = "Find help",
+	desc = "Find help",
+})
+
+map("n", "<leader>fe", "<cmd>Neotree reveal<CR>", {
+	desc = "Reveal current file",
 })
 
 -- LSP keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(event)
-        local opts = { buffer = event.buf, silent = true }
+	callback = function(event)
+		local opts = { buffer = event.buf, silent = true }
 
-        -- Navigation
-        map("n", "gd", vim.lsp.buf.definition, {
-            buffer = event.buf,
-            desc = "Go to definition",
-        })
+		-- Navigation
+		map("n", "gd", vim.lsp.buf.definition, {
+			buffer = event.buf,
+			desc = "Go to definition",
+		})
 
-        map("n", "gD", vim.lsp.buf.declaration, {
-            buffer = event.buf,
-            desc = "Go to declaration",
-        })
+		map("n", "gD", vim.lsp.buf.declaration, {
+			buffer = event.buf,
+			desc = "Go to declaration",
+		})
 
-        map("n", "gr", vim.lsp.buf.references, {
-            buffer = event.buf,
-            desc = "Find references",
-        })
+		map("n", "gr", vim.lsp.buf.references, {
+			buffer = event.buf,
+			desc = "Find references",
+		})
 
-        map("n", "gi", vim.lsp.buf.implementation, {
-            buffer = event.buf,
-            desc = "Go to implementation",
-        })
+		map("n", "gi", vim.lsp.buf.implementation, {
+			buffer = event.buf,
+			desc = "Go to implementation",
+		})
 
-        -- Information
-        map("n", "K", vim.lsp.buf.hover, {
-            buffer = event.buf,
-            desc = "Show hover information",
-        })
+		-- Information
+		map("n", "K", vim.lsp.buf.hover, {
+			buffer = event.buf,
+			desc = "Show hover information",
+		})
 
-        -- Code actions
-        map("n", "<leader>ca", vim.lsp.buf.code_action, {
-            buffer = event.buf,
-            desc = "Code action",
-        })
+		-- Code actions
+		map("n", "<leader>ca", vim.lsp.buf.code_action, {
+			buffer = event.buf,
+			desc = "Code action",
+		})
 
-        map("n", "<leader>rn", vim.lsp.buf.rename, {
-            buffer = event.buf,
-            desc = "Rename symbol",
-        })
+		map("n", "<leader>rn", vim.lsp.buf.rename, {
+			buffer = event.buf,
+			desc = "Rename symbol",
+		})
 
-        -- Diagnostics
-        map("n", "<leader>xx", vim.diagnostic.open_float, {
-            buffer = event.buf,
-            desc = "Show diagnostic",
-        })
+		-- Diagnostics
+		map("n", "<leader>xx", vim.diagnostic.open_float, {
+			buffer = event.buf,
+			desc = "Show diagnostic",
+		})
 
-        map("n", "[d", vim.diagnostic.goto_prev, {
-            buffer = event.buf,
-            desc = "Previous diagnostic",
-        })
+		map("n", "[d", vim.diagnostic.goto_prev, {
+			buffer = event.buf,
+			desc = "Previous diagnostic",
+		})
 
-        map("n", "]d", vim.diagnostic.goto_next, {
-            buffer = event.buf,
-            desc = "Next diagnostic",
-        })
-    end,
+		map("n", "]d", vim.diagnostic.goto_next, {
+			buffer = event.buf,
+			desc = "Next diagnostic",
+		})
+	end,
 })
