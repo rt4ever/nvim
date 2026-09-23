@@ -36,12 +36,9 @@ require("lazy").setup({
 					"--background-index",
 					"--clang-tidy",
 					"--completion-style=detailed",
-					"--header-insertion=iwyu",
+					"--header-insertion=never",
 				},
 			})
-
-			vim.lsp.config("basedpyright", {})
-
 			vim.lsp.enable("clangd")
 			vim.lsp.enable("basedpyright")
 		end,
@@ -99,7 +96,6 @@ require("lazy").setup({
 	},
 
 	-- Which-key
-
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -107,11 +103,9 @@ require("lazy").setup({
 	},
 
 	-- Neo-Tree
-
 	{
 		"MunifTanjim/nui.nvim",
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		opts = {
@@ -130,7 +124,25 @@ require("lazy").setup({
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
+				python = { "ruff_format" },
+			},
+
+			format_on_save = {
+				timeout_ms = 2000,
+				lsp_format = "fallback",
 			},
 		},
+	},
+
+	-- Colorscheme
+	{
+		"ellisonleao/gruvbox.nvim",
+		priority = 1000,
+		config = function()
+			require("gruvbox").setup({
+				contrast = "medium",
+			})
+			vim.cmd.colorscheme("gruvbox")
+		end,
 	},
 })

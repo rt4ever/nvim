@@ -110,19 +110,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		})
 
 		-- Diagnostics
-		map("n", "<leader>xx", vim.diagnostic.open_float, {
-			buffer = event.buf,
-			desc = "Show diagnostic",
+		map("n", "<leader>dd", vim.diagnostic.open_float, {
+			desc = "Diagnostic details",
 		})
 
-		map("n", "[d", vim.diagnostic.goto_prev, {
-			buffer = event.buf,
+		map("n", "[d", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, {
 			desc = "Previous diagnostic",
 		})
 
-		map("n", "]d", vim.diagnostic.goto_next, {
-			buffer = event.buf,
+		map("n", "]d", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, {
 			desc = "Next diagnostic",
+		})
+
+		map("n", "<leader>dl", vim.diagnostic.setloclist, {
+			desc = "Diagnostic list",
 		})
 	end,
 })
