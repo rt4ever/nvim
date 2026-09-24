@@ -136,13 +136,32 @@ require("lazy").setup({
 
 	-- Colorscheme
 	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		opts = {
+			flavour = "mocha",
+			transparent_background = true, -- 想用终端背景/毛玻璃可改为 true
+			integrations = {
+				treesitter = true,
+				telescope = true,
+				cmp = true,
+				gitsigns = true,
+			},
+		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({
 				contrast = "medium",
 			})
-			vim.cmd.colorscheme("gruvbox")
+			-- vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 })
